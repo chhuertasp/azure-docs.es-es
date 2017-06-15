@@ -72,7 +72,7 @@ sudo apt-get install dotnet-dev-1.0.1
 
 ## <a name="get-connection-information"></a>Obtención de información sobre la conexión
 
-Obtención de la información de conexión necesaria para conectarse a Azure SQL Database. En los procedimientos siguientes, necesitará el nombre completo del servidor, el nombre de la base de datos y la información de inicio de sesión.
+Obtener la información de conexión necesaria para conectarse a Azure SQL Database. Para los siguientes pasos, necesitará el nombre completo del servidor, el nombre de la base de datos y la información de inicio de sesión.
 
 1. Inicie sesión en el [Portal de Azure](https://portal.azure.com/).
 2. Seleccione **Bases de datos SQL** en el menú de la izquierda y haga clic en la base de datos en la página **Bases de datos SQL**. 
@@ -80,7 +80,7 @@ Obtención de la información de conexión necesaria para conectarse a Azure SQL
 
    ![server-name](./media/sql-database-connect-query-dotnet/server-name.png) 
 
-4. Si ha olvidado la información de inicio de sesión para el servidor de Azure SQL Database, vaya a la página del servidor de SQL Database para ver el nombre del Administrador del servidor y, si es necesario, restablecer la contraseña.
+4. Si ha olvidado la información de inicio de sesión para el servidor de Azure SQL Database, diríjase a la página del servidor de SQL Database para ver el nombre del Administrador del servidor y, si es necesario, restablecer la contraseña.
 
 5. Haga clic en **Mostrar las cadenas de conexión de la base de datos**.
 
@@ -159,7 +159,7 @@ namespace ConsoleApplication1
 
 ## <a name="insert-data"></a>Insertar datos
 
-Utilice el código siguiente para insertar un nuevo producto en la tabla SalesLT.Product con [SqlCommand.ExecuteNonQuery](https://msdn.microsoft.com/library/system.data.sqlclient.sqlcommand.executenonquery.aspx) con una instrucción Transact-SQL [INSERT](https://msdn.microsoft.com/library/ms174335.aspx). Agregue los valores de servidor, base de datos, usuario y contraseña apropiados.
+Utilice el siguiente código para insertar un nuevo producto en la tabla SalesLT.Product con [SqlCommand.ExecuteNonQuery](https://msdn.microsoft.com/library/system.data.sqlclient.sqlcommand.executenonquery.aspx) con una instrucción Transact-SQL [INSERT](https://msdn.microsoft.com/library/ms174335.aspx). Agregue los valores de servidor, base de datos, usuario y contraseña apropiados.
 
 ```csharp
 using System;
@@ -214,7 +214,7 @@ namespace ConsoleApplication1
 
 ## <a name="update-data"></a>Actualización de datos
 
-Utilice el código siguiente para actualizar el nuevo producto que ha agregado anteriormente con [SqlCommand.ExecuteNonQuery](https://msdn.microsoft.com/library/system.data.sqlclient.sqlcommand.executenonquery.aspx) con una instrucción Transact-SQL [UPDATE](https://msdn.microsoft.com/library/ms177523.aspx). Agregue los valores de servidor, base de datos, usuario y contraseña apropiados.
+Utilice el siguiente código para actualizar los datos del producto que agregó anteriormente con [SqlCommand.ExecuteNonQuery](https://msdn.microsoft.com/library/system.data.sqlclient.sqlcommand.executenonquery.aspx) con una instrucción Transact-SQL [UPDATE](https://msdn.microsoft.com/library/ms177523.aspx). Agregue los valores de servidor, base de datos, usuario y contraseña apropiados.
 
 ```csharp
 using System;
@@ -264,7 +264,7 @@ namespace ConsoleApplication1
 
 ## <a name="delete-data"></a>Eliminación de datos
 
-Utilice el código siguiente para eliminar el nuevo producto que ha agregado anteriormente con [SqlCommand.ExecuteNonQuery](https://msdn.microsoft.com/library/system.data.sqlclient.sqlcommand.executenonquery.aspx) con una instrucción Transact-SQL [DELETE](https://msdn.microsoft.com/library/ms189835.aspx). Agregue los valores de servidor, base de datos, usuario y contraseña apropiados.
+Utilice el código siguiente para eliminar el producto que agregó anteriormente con [SqlCommand.ExecuteNonQuery](https://msdn.microsoft.com/library/system.data.sqlclient.sqlcommand.executenonquery.aspx) con una instrucción Transact-SQL [DELETE](https://msdn.microsoft.com/library/ms189835.aspx). Agregue los valores de servidor, base de datos, usuario y contraseña apropiados.
 
 ```csharp
 using System;
