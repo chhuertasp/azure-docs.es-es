@@ -54,14 +54,14 @@ New-AzureRmResourceGroup -Name myResourceGroup -Location EastUS
 Estos recursos se utilizan para proporcionar conectividad de red a la máquina virtual y conectarse a Internet.
 
 ```powershell
-# Create a subnet configuration
+# Crear configuración de una subred
 $subnetConfig = New-AzureRmVirtualNetworkSubnetConfig -Name mySubnet -AddressPrefix 192.168.1.0/24
 
-# Create a virtual network
+# Crear una red virtual
 $vnet = New-AzureRmVirtualNetwork -ResourceGroupName myResourceGroup -Location EastUS `
     -Name MYvNET -AddressPrefix 192.168.0.0/16 -Subnet $subnetConfig
 
-# Create a public IP address and specify a DNS name
+# Crear una dirección de IP pública y especificar un nombre de DNS
 $pip = New-AzureRmPublicIpAddress -ResourceGroupName myResourceGroup -Location EastUS `
     -AllocationMethod Static -IdleTimeoutInMinutes 4 -Name "mypublicdns$(Get-Random)"
 ```
@@ -70,17 +70,17 @@ $pip = New-AzureRmPublicIpAddress -ResourceGroupName myResourceGroup -Location E
 El grupo de seguridad de red protege la máquina virtual con reglas entrantes y salientes. En este caso, se crea una regla de entrada para el puerto 3389, que permite las conexiones entrantes al Escritorio remoto. También queremos crear una regla de entrada para el puerto 80, que permita el tráfico web entrante.
 
 ```powershell
-# Create an inbound network security group rule for port 3389
+# Crear una regla de grupo de seguridad de red entrante para el puerto 3389
 $nsgRuleRDP = New-AzureRmNetworkSecurityRuleConfig -Name myNetworkSecurityGroupRuleRDP  -Protocol Tcp `
     -Direction Inbound -Priority 1000 -SourceAddressPrefix * -SourcePortRange * -DestinationAddressPrefix * `
     -DestinationPortRange 3389 -Access Allow
 
-# Create an inbound network security group rule for port 80
+# Crear una regla de grupo de seguridad de red entrante para el puerto 80
 $nsgRuleWeb = New-AzureRmNetworkSecurityRuleConfig -Name myNetworkSecurityGroupRuleWWW  -Protocol Tcp `
     -Direction Inbound -Priority 1001 -SourceAddressPrefix * -SourcePortRange * -DestinationAddressPrefix * `
     -DestinationPortRange 80 -Access Allow
 
-# Create a network security group
+# Crear un grupo de seguridad de red (NSG)
 $nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName myResourceGroup -Location EastUS `
     -Name myNetworkSecurityGroup -SecurityRules $nsgRuleRDP,$nsgRuleWeb
 ```
@@ -89,7 +89,7 @@ $nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName myResourceGroup -Locat
 Cree una tarjeta de red con [New-AzureRmNetworkInterface](/powershell/module/azurerm.network/new-azurermnetworkinterface) para la máquina virtual. Esta conecta la máquina virtual a una subred, un grupo de seguridad de red y una dirección IP pública.
 
 ```powershell
-# Create a virtual network card and associate with public IP address and NSG
+# Crear una tarjeta de red virtual y asociarla con una IP pública y con un Grupo de Seguridad de Red
 $nic = New-AzureRmNetworkInterface -Name myNic -ResourceGroupName myResourceGroup -Location EastUS `
     -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $pip.Id -NetworkSecurityGroupId $nsg.Id
 ```
@@ -99,10 +99,10 @@ $nic = New-AzureRmNetworkInterface -Name myNic -ResourceGroupName myResourceGrou
 Cree una configuración de máquina virtual. Esta configuración incluye los ajustes que se usan al implementar la máquina virtual como una imagen de máquina virtual, el tamaño y la configuración de autenticación. Cuando se realiza este paso, se le solicitará las credenciales. Los valores que especifique se configuran como el nombre de usuario y la contraseña de la máquina virtual.
 
 ```powershell
-# Define a credential object
+# Definir como un objeto a la credencial de Azure
 $cred = Get-Credential
 
-# Create a virtual machine configuration
+# Crear la configuración de una máquina virtual
 $vmConfig = New-AzureRmVMConfig -VMName myVM -VMSize Standard_DS2 | `
     Set-AzureRmVMOperatingSystem -Windows -ComputerName myVM -Credential $cred | `
     Set-AzureRmVMSourceImage -PublisherName MicrosoftWindowsServer -Offer WindowsServer `
@@ -125,7 +125,7 @@ Use el comando [Get-AzureRmPublicIpAddress](/powershell/module/azurerm.network/g
 Get-AzureRmPublicIpAddress -ResourceGroupName myResourceGroup | Select IpAddress
 ```
 
-Ejecute el comando siguiente para crear una sesión del Escritorio remoto con la máquina virtual. Reemplace la dirección IP con el valor de *publicIPAddress* de la máquina virtual. Cuando se le solicite, escriba las credenciales usadas al crear la máquina virtual.
+Ejecute el siguiente comando para crear una sesión del Escritorio remoto con la máquina virtual. Reemplace la dirección IP con el valor de *publicIPAddress* de la máquina virtual. Cuando se le solicite, escriba las credenciales usadas al crear la máquina virtual.
 
 ```bash 
 mstsc /v:<publicIpAddress>
