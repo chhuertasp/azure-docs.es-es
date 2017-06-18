@@ -22,19 +22,19 @@ ms.lasthandoff: 04/21/2017
 
 ---
 # <a name="azure-resource-manager-overview"></a>Información general del Administrador de recursos de Azure
-La infraestructura de la aplicación está constituida normalmente por varios componentes: quizás una máquina virtual, una cuenta de almacenamiento y una red virtual, o una aplicación web, una base de datos, un servidor de bases de datos y servicios de terceros. Estos componentes no se ven como entidades independientes, sino como partes de una sola entidad relacionadas e interdependientes. Desea implementarlos, administrarlos y supervisarlos como grupo. Azure Resource Manager permite trabajar con los recursos de la solución como un grupo. Todos los recursos de la solución se pueden implementar, actualizar o eliminar en una sola operación coordinada. Para realizar la implementación se usa una plantilla, que puede funcionar en distintos entornos, como producción, pruebas y ensayo. Administrador de recursos proporciona funciones de seguridad, auditoría y etiquetado que le ayudan a administrar los recursos después de la implementación. 
+La infraestructura de la aplicación está constituida normalmente por varios componentes como: una máquina virtual, una cuenta de almacenamiento y una red virtual, o una aplicación web, una base de datos, un servidor de bases de datos y servicios de terceros. Estos componentes no se muestran como entidades independientes, sino como partes de una sola entidad relacionadas e interdependientes. Desea implementarlos, administrarlos y supervisarlos como grupo. El Administrador de recursos de Azure permite trabajar con los recursos de la solución como un grupo. Todos los recursos de la solución se pueden implementar, actualizar o eliminar en una sola operación coordinada. Para realizar la implementación se usa una plantilla, que puede funcionar en distintos entornos, como producción, pruebas y ensayo. El Administrador de recursos proporciona funciones de seguridad, auditoría y etiquetado que le ayudan a administrar los recursos después de la implementación.
 
 ## <a name="terminology"></a>Terminología
-Si no conoce Azure Resource Manager, estos son algunos términos con los que puede no estar familiarizado.
+Si recién está conociendo sobre el Administrador de recursos de Azure, estos son algunos términos con los que debe estar familiarizado.
 
-* **recurso** : elemento administrable que está disponible a través de Azure. Algunos recursos comunes son una máquina virtual, una cuenta de almacenamiento, una aplicación web, una base de datos y una red virtual, pero hay muchos más.
+* **recurso** : elemento administrable que está disponible a través de Azure. Algunos recursos comunes son una máquina virtual, una cuenta de almacenamiento, una aplicación web, una base de datos y una red virtual, pero existen muchos más.
 * **grupo de recursos** : contenedor que almacena los recursos relacionados con una solución de Azure. El grupo de recursos puede incluir todos los recursos de la solución o solo aquellos que se desean administrar como grupo. Para decidir cómo asignar los recursos a los grupos de recursos, tenga en cuenta lo que más conviene a su organización. Consulte [Grupos de recursos](#resource-groups).
-* **proveedor de recursos** : servicio que proporciona los recursos que puede implementar y administrar mediante Resource Manager. Cada proveedor de recursos ofrece operaciones para trabajar con los recursos que se implementan. Algunos proveedores de recursos comunes son Microsoft.Compute, que suministra el recurso de máquinas virtuales, Microsoft.Storage, que suministra el recurso de cuentas de almacenamiento y Microsoft.Web, que suministra recursos relacionados con aplicaciones web. Consulte [Proveedores de recursos](#resource-providers).
-* **Plantilla de Resource Manager** : archivo de notación de objetos JavaScript (JSON) que define uno o más recursos para implementar en un grupo de recursos. También define las dependencias entre los recursos implementados. La plantilla se puede usar para implementar los recursos de manera repetida y uniforme. Consulte [Implementación de plantilla](#template-deployment).
-* **sintaxis declarativa** : sintaxis que permite establecer lo que pretende crear sin tener que escribir la secuencia de comandos de programación para crearla. La plantilla de Resource Manager es un ejemplo de sintaxis declarativa. En el archivo, puede definir las propiedades de la infraestructura que se va a implementar en Azure. 
+* **proveedor de recursos** : servicio que proporciona los recursos que puede implementar y administrar mediante el Administrador de Recursos. Cada proveedor de recursos ofrece operaciones para trabajar con los recursos que se implementan. Algunos proveedores de recursos comunes son Microsoft.Compute, que suministra el recurso de máquinas virtuales, Microsoft.Storage, que suministra el recurso de cuentas de almacenamiento y Microsoft.Web, que suministra recursos relacionados con aplicaciones web. Consulte [Proveedores de recursos](#resource-providers).
+* **Plantilla del Administrador de Recursos** : archivo de notación de objetos JavaScript (JSON) que define uno o más recursos para implementar en un grupo de recursos. También define las dependencias entre los recursos implementados. La plantilla se puede usar para implementar los recursos de manera repetida y uniforme. Consulte [Implementación de plantilla](#template-deployment).
+* **sintaxis declarativa** : sintaxis que permite establecer lo que pretende crear sin tener que escribir la secuencia de comandos de programación para crearla. La plantilla del Administrador de Recursos es un ejemplo de sintaxis declarativa. En el archivo, puede definir las propiedades de la infraestructura que se va a implementar en Azure. 
 
 ## <a name="the-benefits-of-using-resource-manager"></a>Ventajas de usar Administrador de recursos
-Administrador de recursos ofrece varias ventajas:
+El Administrador de recursos ofrece varias ventajas:
 
 * Puede implementar, administrar y supervisar todos los recursos de la solución en grupo, en lugar de controlarlos individualmente.
 * Puede implementar la solución repetidamente a lo largo del ciclo de vida del desarrollo y tener la seguridad de que los recursos se implementan de forma coherente.
@@ -44,17 +44,17 @@ Administrador de recursos ofrece varias ventajas:
 * Puede aplicar etiquetas a los recursos para organizar de manera lógica todos los recursos de la suscripción.
 * Puede aclarar la facturación de su organización viendo los costos de un grupo de recursos que compartan la misma etiqueta.  
 
-Resource Manager ofrece una nueva manera de implementar y administrar las soluciones. Si usó el anterior modelo de implementación y desea obtener más información sobre los cambios, consulte [Descripción de la implementación de Administrador de recursos y la implementación clásica](resource-manager-deployment-model.md).
+El Administrador de Recursos ofrece una nueva manera de implementar y administrar las soluciones. Si usó el anterior modelo de implementación y desea obtener más información sobre los cambios, consulte [Descripción de la implementación de Administrador de recursos y la implementación clásica](resource-manager-deployment-model.md).
 
 ## <a name="consistent-management-layer"></a>Capa de administración coherente
-Resource Manager proporciona una capa de administración coherente para las tareas que se realizan a través de Azure PowerShell, la CLI de Azure, Azure Portal, API de REST y herramientas de desarrollo. Todas las herramientas utilizan un conjunto común de operaciones. Podrá usar aquellas herramientas que funcionen mejor y podrá usarlas indistintamente sin confusión. 
+El Administrador de Recursos proporciona una capa de administración coherente para las tareas que se realizan a través de Azure PowerShell, la CLI de Azure, Azure Portal, API de REST y herramientas de desarrollo. Todas las herramientas utilizan un conjunto común de operaciones. Utilice las herramientas que le parezcan convenientes y podrá usarlas indistintamente sin confusión. 
 
-La siguiente imagen muestra cómo todas las herramientas interactúan con la misma API de Azure Resource Manager. La API pasa las solicitudes al servicio Resource Manager que las autentica y autoriza. A continuación, Resource Manager enruta las solicitudes a los proveedores de recursos adecuados.
+La siguiente imagen muestra cómo todas las herramientas interactúan con la misma API del Administrador de Recursos de Azure. La API pasa las solicitudes al servicio del Administrador de Recursos que las autentica y autoriza. A continuación, el Administrador de Recursos enruta las solicitudes a los proveedores de recursos adecuados.
 
 ![Modelo de solicitud de Resource Manager](./media/resource-group-overview/consistent-management-layer.png)
 
 ## <a name="guidance"></a>Guía
-Las siguientes sugerencias le ayudarán a sacar el máximo partido de Resource Manager cuando trabaje con sus soluciones.
+Las siguientes sugerencias le ayudarán a sacar el máximo partido del Administrador de Recursos cuando trabaje con sus soluciones.
 
 1. Defina e implemente la infraestructura mediante la sintaxis declarativa en las plantillas de Administrador de recursos, en lugar de comandos imperativos.
 2. Defina todos los pasos de implementación y configuración de la plantilla. No debería tener ningún paso manual para configurar la solución.
@@ -63,7 +63,7 @@ Las siguientes sugerencias le ayudarán a sacar el máximo partido de Resource M
 
 Para más recomendaciones sobre platillas, consulte [Procedimientos recomendados para crear plantillas de Azure Resource Manager](resource-manager-template-best-practices.md).
 
-Para obtener instrucciones sobre cómo las empresas pueden utilizar Resource Manager para administrar eficazmente las suscripciones, vea [Scaffold empresarial de Azure: Gobierno de suscripción prescriptivo](resource-manager-subscription-governance.md).
+Para obtener instrucciones sobre cómo las empresas pueden utilizar el Administrador de Recursos para administrar eficazmente las suscripciones, vea [Scaffold empresarial de Azure: Gobierno de suscripción prescriptivo](resource-manager-subscription-governance.md).
 
 ## <a name="resource-groups"></a>Grupos de recursos
 Hay algunos factores importantes que se deben tener en cuenta al definir el grupo de recursos:
